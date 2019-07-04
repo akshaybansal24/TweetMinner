@@ -1,0 +1,21 @@
+@import models.TweetsResult;
+@(tweets: TweetsResult)
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <title>TweetMiner - Location (@tweets.getSearchKey())</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/custom.css")">
+		<script src="@routes.Assets.versioned("javascripts/jquery-3.3.1.min.js")"></script>
+    </head>
+    <body>
+        <div>
+        	<h1>Tweets for Location @tweets.getSearchKey()</h1>
+            @if(tweets.getTweets() != null){
+            	@for(index<-0 until tweets.getTweets().size){
+            		<p>@tweets.getTweets.get(index)</p><br><br>
+            	}
+            }
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,43 @@
+@import models.UserProfileResult;
+@(userProfile: UserProfileResult)
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <title>TweetMiner - UserProfile (@userProfile.getUserName())</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/custom.css")">
+		<script src="@routes.Assets.versioned("javascripts/jquery-3.3.1.min.js")"></script>
+    </head>
+    <body>
+        <div style="text-align: center;">
+        	<h1 style="text-align: center;">Profile for  @userProfile.getUserName()</h1>
+        	@if(userProfile.getUserImageUrl()!=null && !"".equals(userProfile.getUserImageUrl())){
+        	<img src="@userProfile.getUserImageUrl()">
+        	}
+        	@if(userProfile.getUserId()>0){
+        		<p style="text-align: center;">Id: @userProfile.getUserId()
+        	}
+        	@if(userProfile.getUserScreenName()!=null && !"".equals(userProfile.getUserScreenName())){
+        		<p style="text-align: center;">Screen Name : @userProfile.getUserScreenName()
+        	}
+        	@if(userProfile.getUserLocation()!=null && !"".equals(userProfile.getUserLocation())){
+        		<p style="text-align: center;">Location : @userProfile.getUserLocation()
+        	}
+        	@if(userProfile.getUserDescription()!=null && !"".equals(userProfile.getUserDescription())){
+        		<p style="text-align: center;">Description : @userProfile.getUserDescription()
+        	}
+        	@if(userProfile.getUserFollowerCount()>0){
+        		<p style="text-align: center;">Count : @userProfile.getUserFollowerCount()
+        	}
+        	@if(userProfile.getUserProfileUrl()!=null && !"".equals(userProfile.getUserProfileUrl())){
+        		<p style="text-align: center;">URL : @userProfile.getUserProfileUrl()
+        	}
+        	@if(userProfile.getTimelineTweets()!=null && userProfile.getTimelineTweets().size>0){
+        		<h2 style="text-align: center;">Timeline Tweets</h2>
+        		@for(index<-0 until userProfile.getTimelineTweets().size){
+        			<p style="text-align: center;">@userProfile.getTimelineTweets().get(index)
+        		}
+        	}
+        </div>
+    </body>
+</html>
+

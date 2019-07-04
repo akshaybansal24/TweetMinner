@@ -1,0 +1,27 @@
+@import models.TweetDistinctWordCountResult;
+@(wordCount : TweetDistinctWordCountResult)
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <title>TweetMiner - WordCount(@wordCount.getSearchKey())</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/custom.css")">
+		<script src="@routes.Assets.versioned("javascripts/jquery-3.3.1.min.js")"></script>
+    </head>
+    <body>
+        <div>
+        	<h1>Distinct Word Count For @wordCount.getSearchKey()</h1>
+            @if(wordCount.getDistinctWordsCount() != null){
+            	@for((key,value) <- wordCount.getDistinctWordsCount()){
+            		<table style="width: 80%;text-align: center;table-layout: fixed;">
+            			<tr>
+            				<td style="width: 80%;">@key</td>
+            				<td style="width: 20%">@value</td>
+            			</tr>
+            		</table>
+            	}
+            }
+        </div>
+    </body>
+</html>
+
